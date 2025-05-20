@@ -1,0 +1,133 @@
+Metadata-Version: 2.4
+Name: mvkm-ed
+Version: 1.1.0
+Summary: Federated Multi-View K-Means Clustering with Rectified Gaussian Kernel
+Home-page: https://github.com/yourusername/Fed-MVKM
+Author: Kristina P. Sinaga
+Author-email: kristinasinaga41@gmail.com
+Keywords: clustering,federated-learning,multi-view-clustering,k-means,privacy-preserving,machine-learning
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.19.0
+Requires-Dist: scipy>=1.6.0
+Requires-Dist: scikit-learn>=0.24.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Fed-MVKM: Federated Multi-View K-Means Clustering with Rectified Gaussian Kernel
+
+## Overview
+This package implements a combination of two advanced clustering algorithms:
+1. Federated Multi-View K-Means Clustering (Fed-MVKM)
+2. Rectified Gaussian Kernel Multi-View K-Means Clustering (MVKM-ED)
+
+The implementation provides a privacy-preserving distributed learning framework for multi-view clustering while leveraging the enhanced discriminative power of rectified Gaussian kernels.
+
+## Key Features
+- Privacy-preserving federated learning for multi-view data
+- Automatic view importance weight learning
+- Rectified Gaussian kernel for enhanced distance computation
+- Efficient distributed computation
+- Scalable implementation for IoT and edge devices
+- Automatic parameter adaptation
+- GPU acceleration support
+
+## Requirements
+- Python 3.7+
+- NumPy >= 1.19.0
+- SciPy >= 1.6.0
+- scikit-learn >= 0.24.0
+
+## Installation
+```bash
+pip install mvkm-ed
+```
+
+## Usage
+```python
+import numpy as np
+from mvkm_ed import MVKMED, MVKMEDParams
+
+# Create sample data
+X1 = np.random.randn(100, 10)  # First view
+X2 = np.random.randn(100, 15)  # Second view
+X = [X1, X2]
+
+# Set parameters
+params = MVKMEDParams(
+    cluster_num=3,
+    points_view=2,
+    alpha=2.0,
+    beta=0.1,
+    max_iterations=100,
+    convergence_threshold=1e-4
+)
+
+# Create and fit model
+model = MVKMED(params)
+model.fit(X)
+
+# Get cluster assignments
+cluster_labels = model.index
+```
+
+## Parameters
+- `cluster_num`: Number of clusters
+- `points_view`: Number of data views
+- `alpha`: Exponent parameter to control view weights
+- `beta`: Distance control parameter
+- `max_iterations`: Maximum number of iterations
+- `convergence_threshold`: Convergence criterion threshold
+
+## Citation
+If you use this code in your research, please cite our papers:
+
+```bibtex
+@ARTICLE{10810504,
+  author={Yang, Miin-Shen and Sinaga, Kristina P.},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={Federated Multi-View K-Means Clustering}, 
+  year={2025},
+  volume={47},
+  number={4},
+  pages={2446-2459},
+  doi={10.1109/TPAMI.2024.3520708}
+}
+
+@article{sinaga2024rectified,
+  title={Rectified Gaussian Kernel Multi-View K-Means Clustering},
+  author={Sinaga, Kristina P. and others},
+  journal={arXiv},
+  year={2024}
+}
+```
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+- Kristina P. Sinaga
+- Email: kristinasinaga41@gmail.com
+
+## Acknowledgments
+This work was supported by the National Science and Technology Council, 
+Taiwan (Grant Number: NSTC 112-2118-M-033-004)
