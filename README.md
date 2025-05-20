@@ -128,6 +128,57 @@ fed_model.fit(client_data)
 global_labels = fed_model.get_global_labels()
 ```
 
+## Datasets
+
+### DHA (Depth-included Human Action) Dataset
+
+The DHA dataset is an RGB-D multi-modal dataset for human action recognition and retrieval. This dataset represents a practical application of our federated multi-view clustering approach in action recognition using both depth and RGB information.
+
+#### Dataset Details
+- **Actions**: 23 different action categories
+- **Subjects**: 21 different subjects performing actions
+- **Views**: Two complementary data views:
+  - Depth data (6144-dimensional feature vectors)
+  - RGB data (110-dimensional feature vectors)
+
+For detailed information about the dataset, please refer to the paper: "Human action recognition and retrieval using sole depth information" ([View Paper](https://dl.acm.org/doi/10.1145/2393347.2396381))
+
+#### Example with DHA Dataset
+
+```python
+from mvkm_ed import FedMVKMED, FedMVKMEDParams
+from mvkm_ed.datasets import load_dha
+
+# Load DHA dataset with multiple views (depth and RGB)
+X_dha, y_true = load_dha()  # Returns depth (6144-d) and RGB (110-d) features
+
+# Split data for federated setup across different locations
+client_data = {
+    'site1': [X_dha[0][:150], X_dha[1][:150]],  # First 150 samples
+    'site2': [X_dha[0][150:300], X_dha[1][150:300]],  # Next 150 samples
+    'site3': [X_dha[0][300:], X_dha[1][300:]]  # Remaining samples
+}
+
+# Configure federated learning
+fed_params = FedMVKMEDParams(
+    cluster_num=23,  # Number of action categories
+    points_view=2,  # Depth and RGB views
+    alpha=2.0,
+    beta=0.1,
+    gamma=0.05,
+    privacy_level=0.9
+)
+
+# Train federated model
+fed_model = FedMVKMED(fed_params)
+fed_model.fit(client_data)
+
+# Evaluate clustering results
+results = fed_model.evaluate(metrics=['nmi', 'ari'])
+print(f"NMI Score: {results['nmi']:.3f}")
+print(f"ARI Score: {results['ari']:.3f}")
+```
+
 ## Parameters
 
 ### Basic Parameters
