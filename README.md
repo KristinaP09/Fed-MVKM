@@ -236,11 +236,14 @@ If you use this code in your research, please cite our papers:
   doi={10.1109/TPAMI.2024.3520708}
 }
 
-@article{sinaga2024rectified,
-  title={Rectified Gaussian Kernel Multi-View K-Means Clustering},
-  author={Sinaga, Kristina P. and others},
-  journal={arXiv},
-  year={2024}
+@misc{sinaga2024rectifiedgaussiankernelmultiview,
+      title={Rectified Gaussian kernel multi-view k-means clustering}, 
+      author={Kristina P. Sinaga},
+      year={2024},
+      eprint={2405.05619},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2405.05619}, 
 }
 ```
 
