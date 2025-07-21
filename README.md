@@ -254,7 +254,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Contact
 
 - Kristina P. Sinaga
-- Email: kristinasinaga41@gmail.com
+- Email: kristinapestaria.sinaga@isti.cnr.it (The email address kristinasinaga41@gmail.com is no longer under my authority. Please do not use it to contact me.)
 
 ## Acknowledgments
 
